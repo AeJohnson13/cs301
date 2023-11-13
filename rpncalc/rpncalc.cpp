@@ -16,7 +16,7 @@ using std::string;
 using std::stof;
 #include <list> 
 using std::list; 
-
+#include "rpncalc.hpp"
 
 
 int main()
@@ -26,11 +26,11 @@ int main()
 	
 	string token; 
 	list<string> inputstream {};
-	while(std::cin >> token) 
+	while(cin >> token) 
 	{ 	
 		inputstream.push_back(token); 
 	}
-
+	std::cout << rpnAssess(inputstream) << std::endl;
 	return 0; 
 } 
 
