@@ -29,8 +29,10 @@ int main()
 	while(cin >> token) 
 	{ 	
 		inputstream.push_back(token); 
+	
 	}
 	std::cout << rpnAssess(inputstream) << std::endl;
+	
 	return 0; 
 } 
 
