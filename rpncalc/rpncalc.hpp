@@ -6,6 +6,10 @@
 //For CS301 Fall 2023
 //header file for rpncalc
 
+#ifndef FILE_RPNCALC_HPP_INCLUDED
+#define FILE_RPNCALC_HPP_INCLUDED
+
+
 #include <iterator> 
 //for std::advance
 #include <vector>
@@ -25,14 +29,14 @@
 
 
 	
-inline
+//this function checks the type of the given string, by checking if std::stof throws,
+//this will be done differently in the final program 
 int evalstring(std::string & myString)
 {
 
 	try
 	{ 
 		std::stof(myString);
-	//	std::cerr << "found float" << std::endl;
 		return 1;   //this one represents a valid float value;
 	} 
 	catch(std::invalid_argument & e)
@@ -40,12 +44,12 @@ int evalstring(std::string & myString)
 	       	char token = myString.front();
 		if(token == '+' || token == '-' || token == '*' || token == '/')
 		{ 
-	//	std::cerr << "found char" << std::endl;
 			return 2; //in this context the two will represent a valid 
 		} 	
 		else
-		{ 
-			throw; 
+		{
+			std::cerr << token << " is not a valid input" << std::endl;
+			return 3; //indicates failure to find valid input
 		} 
 	}
        return 3; //this shouldn't happen 	
@@ -55,7 +59,8 @@ int evalstring(std::string & myString)
 
 
 
-//dummy 
+//dummy - this will be done in assembly in the near future, due to time constraints,
+// aka calc2 exam tommorrow   
 float assembleval(float op1, float op2, char op)
 { 
 	if(op == '+')
@@ -77,7 +82,19 @@ float assembleval(float op1, float op2, char op)
 	return 0;
 } 
 
+//extern "C" float assembleval(float op1, float op2, char op); 
 
+
+
+
+// this function searches a linked list of strings for a section of rpn notation that can be evaluated, num num operator,
+// it then passes that section to function assembleval that returns the resulting number, it then replaces the three operands 
+// with just the resultant number
+//
+//if an invalid operand is entered an appropriate error message will occur
+//however if a invalid rpn expression is entered but with appropriate characters the program will crash
+//i will fix this at some point
+//
 float rpnAssess(std::list<std::string> & inputstream) 
 {
 	
@@ -85,9 +102,9 @@ float rpnAssess(std::list<std::string> & inputstream)
 		std::vector<int> goalvec{1, 1, 2}; 	
 		while(inputstream.size() != 1)
 		{ 
+
 			for(auto iter = inputstream.begin(); iter != inputstream.end(); iter++)	 
 			{ 
-				if(inputstream.size() == 1) { break;}	
 		 		std::vector<int> typevec = {0, 0, 0}; 
 				auto iter1 = iter;
 				typevec[0] = evalstring(*iter);
@@ -107,20 +124,28 @@ float rpnAssess(std::list<std::string> & inputstream)
 					inputstream.insert(iter1, resultstring);
 					std::advance(iter3, 1);	
 					inputstream.erase(iter1, iter3);
-					break;
+					if(inputstream.size() == 1) 
+					{ 
+						return std::stof(inputstream.front());
+					}
+				       break;	
 				}
+				else if(typevec[0] == 3 || typevec[1] == 3 || typevec[2] == 3)
+				{ 
+					std::cerr << "found invalid character" << std::endl;
+					return 0; 
+				} 
+
 				else
 				{ 
 				iter = iter1; 
 				} 	
 			}
-		} 
-	
-	if(inputstream.size() == 1)     //base case 
-	{ 
-	return std::stof(inputstream.front());
-	} 
+
+		}  
+
 } 
 	
 	
 	
+#endif // #ifndef FILE_RPNCALC_HPP_INCLUDED
