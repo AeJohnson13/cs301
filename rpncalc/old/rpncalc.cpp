@@ -34,9 +34,4 @@ int main()
 	std::cout << rpnAssess(inputstream) << std::endl;
 	
 	return 0; 
-} 
-
-
-
-
-
+} 	
