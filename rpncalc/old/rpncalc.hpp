@@ -6,11 +6,15 @@
 //For CS301 Fall 2023
 //header file for rpncalc
 
+<<<<<<< HEAD:rpncalc/rpncalc.hpp
 #ifndef FILE_RPNCALC_HPP_INCLUDED
 #define FILE_RPNCALC_HPP_INCLUDED
 
 
 #include <iterator> 
+=======
+#include <iterator>
+>>>>>>> 543a2fc5612063cebb635885fdad8d037ae53551:rpncalc/old/rpncalc.hpp
 //for std::advance
 #include <vector>
 //for std::vector
@@ -20,6 +24,7 @@
 #include <list>
 //for std::list
 #include <iostream>
+<<<<<<< HEAD:rpncalc/rpncalc.hpp
 //for std::cerr
 
 
@@ -31,18 +36,22 @@
 	
 //this function checks the type of the given string, by checking if std::stof throws,
 //this will be done differently in the final program 
+=======
+inline
+>>>>>>> 543a2fc5612063cebb635885fdad8d037ae53551:rpncalc/old/rpncalc.hpp
 int evalstring(std::string & myString)
 {
 
 	try
-	{ 
+	{
 		std::stof(myString);
 		return 1;   //this one represents a valid float value;
-	} 
+	}
 	catch(std::invalid_argument & e)
 	{
 	       	char token = myString.front();
 		if(token == '+' || token == '-' || token == '*' || token == '/')
+<<<<<<< HEAD:rpncalc/rpncalc.hpp
 		{ 
 			return 2; //in this context the two will represent a valid 
 		} 	
@@ -51,41 +60,57 @@ int evalstring(std::string & myString)
 			std::cerr << token << " is not a valid input" << std::endl;
 			return 3; //indicates failure to find valid input
 		} 
+=======
+		{
+	//	std::cerr << "found char" << std::endl;
+			return 2; //in this context the two will represent a valid
+		}
+		else
+		{
+			throw;
+		}
+>>>>>>> 543a2fc5612063cebb635885fdad8d037ae53551:rpncalc/old/rpncalc.hpp
 	}
-       return 3; //this shouldn't happen 	
-} 	
+       return 3; //this shouldn't happen
+}
 
 
 
 
 
+<<<<<<< HEAD:rpncalc/rpncalc.hpp
 //dummy - this will be done in assembly in the near future, due to time constraints,
 // aka calc2 exam tommorrow   
+=======
+// extern "C" float assembleval(float op1, float op2, int op); 
+//dummy
+>>>>>>> 543a2fc5612063cebb635885fdad8d037ae53551:rpncalc/old/rpncalc.hpp
 float assembleval(float op1, float op2, char op)
-{ 
+{
 	if(op == '+')
-	{ 
+	{
 		return op1+op2;
-	} 
+	}
 	else if(op == '-')
-	{ 
+	{
 		return op1-op2;
-	} 
+	}
 	else if(op == '*')
 	{
 		return op1*op2;
-	} 
+	}
 	else if(op == '/')
-	{ 
+	{
 		return op1/op2;
 	}
 	return 0;
-} 
+}
 
 //extern "C" float assembleval(float op1, float op2, char op); 
 
 
 
+<<<<<<< HEAD:rpncalc/rpncalc.hpp
 
 // this function searches a linked list of strings for a section of rpn notation that can be evaluated, num num operator,
 // it then passes that section to function assembleval that returns the resulting number, it then replaces the three operands 
@@ -96,33 +121,44 @@ float assembleval(float op1, float op2, char op)
 //i will fix this at some point
 //
 float rpnAssess(std::list<std::string> & inputstream) 
+=======
+float rpnAssess(std::list<std::string> & inputstream)
+>>>>>>> 543a2fc5612063cebb635885fdad8d037ae53551:rpncalc/old/rpncalc.hpp
 {
-	
-	
-		std::vector<int> goalvec{1, 1, 2}; 	
+
+
+		std::vector<int> goalvec{1, 1, 2};
 		while(inputstream.size() != 1)
+<<<<<<< HEAD:rpncalc/rpncalc.hpp
 		{ 
 
 			for(auto iter = inputstream.begin(); iter != inputstream.end(); iter++)	 
 			{ 
 		 		std::vector<int> typevec = {0, 0, 0}; 
+=======
+		{
+			for(auto iter = inputstream.begin(); iter != inputstream.end(); iter++)
+			{
+				if(inputstream.size() == 1) { break;}
+		 		std::vector<int> typevec = {0, 0, 0};
+>>>>>>> 543a2fc5612063cebb635885fdad8d037ae53551:rpncalc/old/rpncalc.hpp
 				auto iter1 = iter;
 				typevec[0] = evalstring(*iter);
 				std::advance(iter, 1);
 				auto iter2 = iter;
 	       	 		typevec[1] = evalstring(*iter);
 				std::advance(iter, 1);
-				auto iter3 = iter; 
-				typevec[2] = evalstring(*iter); 
-				if (typevec[0] == goalvec[0] && typevec[1] == goalvec[1] && typevec[2] == goalvec[2]) 
-				{ 
+				auto iter3 = iter;
+				typevec[2] = evalstring(*iter);
+				if (typevec[0] == goalvec[0] && typevec[1] == goalvec[1] && typevec[2] == goalvec[2])
+				{
 					float operand_1 = std::stof(*iter1);
-					float operand_2 =  std::stof(*iter2); 
+					float operand_2 =  std::stof(*iter2);
 					char operato_r = iter3->front();
 					float result = assembleval(operand_1,operand_2,operato_r);
 					auto resultstring = std::to_string(result);
 					inputstream.insert(iter1, resultstring);
-					std::advance(iter3, 1);	
+					std::advance(iter3, 1);
 					inputstream.erase(iter1, iter3);
 					if(inputstream.size() == 1) 
 					{ 
@@ -137,10 +173,11 @@ float rpnAssess(std::list<std::string> & inputstream)
 				} 
 
 				else
-				{ 
-				iter = iter1; 
-				} 	
+				{
+				iter = iter1;
+				}
 			}
+<<<<<<< HEAD:rpncalc/rpncalc.hpp
 
 		}  
 
@@ -149,3 +186,15 @@ float rpnAssess(std::list<std::string> & inputstream)
 	
 	
 #endif // #ifndef FILE_RPNCALC_HPP_INCLUDED
+=======
+		}
+
+	if(inputstream.size() == 1)     //base case
+	{
+	return std::stof(inputstream.front());
+	}
+}
+
+
+
+>>>>>>> 543a2fc5612063cebb635885fdad8d037ae53551:rpncalc/old/rpncalc.hpp

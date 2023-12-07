@@ -17,20 +17,6 @@ using std::string;
 using std::list; 
 #include "rpncalc.hpp"
 
-
-
-
-
-
-
-
-
-
-
-//As of right now due to the storage of floats as strings the precision is lost,
-//the final product will not have this issue
-//
-//main stores a std::list of strings that are supposed to be either floats or chars + - * / 
 int main()
 {
 	std::cout << "Please enter an operation using reverse polish notation" << std::endl; 
@@ -46,9 +32,4 @@ int main()
 	cout << rpnAssess(inputstream) << endl;
 	
 	return 0; 
-} 
-
-
-
-
-
+} 	
