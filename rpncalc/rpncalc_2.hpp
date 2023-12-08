@@ -56,7 +56,7 @@ int evalstring(const std::string & myString)
        return 3; //this shouldn't happen 	
 } 	
 
-extern "C" float assembleval(float op1, float op2, char op); 
+extern "C" float assembleval(float op1, float op2, int op); 
 
 
 float rpnAssess(const std::string & line) 
@@ -76,7 +76,7 @@ float rpnAssess(const std::string & line)
 			numStack.pop(); 
 			float num1 = numStack.top();
 			numStack.pop(); 
-			float result = assembleval(num1, num2, opertor.front());
+			float result = assembleval(num1, num2, int(opertor.front()));
 		        numStack.push(result); 	
 		}
 	       	else
