@@ -27,35 +27,39 @@ using std::setprecision;
 
 
 
-
+// main function for rnpcalc_2
+// takes an expression in reverse polish notation and returns the result
+// will continue to take expressions until an empty line is given or ctrl-d
+//
 int main()
 {
-	string prompt {"Please enter an operation using reverse polish notation"};	
-	cout << prompt << endl;
-	cout << "(push enter on empty line or hit ctrl-d to stop running)" << endl;
-	while(true)
+	string prompt {"Please enter an operation using reverse polish notation"}; // prompt for user input	
+	cout << prompt << endl;  //initial user input prompt
+	cout << "(push enter on empty line or hit ctrl-d to stop running)" << endl; // single time prompt showing how to end program
+
+	while(true) // main loop 
 	{ 
-		string line;
-		getline(cin, line);	
-		if(line.find_first_not_of(' ')!= std::string::npos)
+		string line;  // input line
+		getline(cin, line); // reads line from user	
+		if(line.find_first_not_of(' ')!= std::string::npos)  // checks if given line was empty
 		{ 	
-			bool broke = false;
-			float result = 0;
+			bool broke = false; // stores whether an error has occured
+			float result = 0; // declare float outside of try block
 			try 
 			{
-				result = rpnAssess(line);
+				result = rpnAssess(line); // evaluates the inputed line
 			}
-			catch(const std::invalid_argument& e) 
+			catch(const std::invalid_argument& e) // tells user if the expression wasn't evaluatable or has an invalid character
 			{ 
 					broke = true;
 				     	cout << "\"" << line << "\"" << endl << e.what() << endl << prompt << endl;
 			} 
-			catch(const std::out_of_range& e)
+			catch(const std::out_of_range& e) // tells user if they went over the floating point maximum
 			{
 					broke = true;
 					cout << "\"" << line << "\"" << endl << " is out of range " <<endl << prompt << endl;
 			} 
-			if(broke == false)
+			if(broke == false) // outputs the result if no errors were thrown 
 			{ 
 				cout << setprecision(6) << "result = " << result << endl << prompt << endl;
 
@@ -64,7 +68,7 @@ int main()
 		}
 		else
 		{ 
-		break;
+		break; // leave loop if empty line given 
 		} 
 	} 	
 	return 0; 

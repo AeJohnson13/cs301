@@ -24,17 +24,18 @@
 //for std::invalid_argument
 
 
-
-	
-inline
+// evalstring
+// Given string, returns 1 if string can be converted into a float, 
+// else returns 2 if the character is + - * or /, otherwise throws 
+// std::invalid_argument
+// Basic Guarantee	
 int evalstring(const std::string & myString)
 {
 
 	try
 	{ 
 		std::stof(myString);
-	//	std::cerr << "found float" << std::endl;
-		return 1;   //this one represents a valid float value;
+		return 1;   //this 1 represents a valid float value;
 	} 
 	catch(std::invalid_argument & e)
 	{
@@ -45,20 +46,36 @@ int evalstring(const std::string & myString)
 	       	char token = myString.front();
 		if(token == '+' || token == '-' || token == '*' || token == '/')
 		{ 
-	//	std::cerr << "found char" << std::endl;
-			return 2; //in this context the two will represent a valid 
+			return 2; // in this context the two will represent a valid operator
 		} 	
 		else
 		{ 
 			throw std::invalid_argument("contains invalid char"); 
 		} 
 	}
-       return 3; //this shouldn't happen 	
 } 	
 
-extern "C" float assembleval(float op1, float op2, int op); 
+
+// assembleval declaration
+// 
+// implemented in rpn.asm
+//
+// Given two floats and an operator char
+// return the result of the two floats
+// Pre: 
+// 	char is + - * or / 
+// Strong Guarantee 
+extern "C" float assembleval(float op1, 
+			     float op2, 
+			     char op); 
 
 
+
+// rpnAssess 
+// given a string that contains a valid reverse polish notation 
+// expression returns the result of the expression, will throw 
+// std::invalid argument if an invalid expression is given
+// Basic Guarantee
 float rpnAssess(const std::string & line) 
 {
 	istringstream lineStream(line);
@@ -76,7 +93,7 @@ float rpnAssess(const std::string & line)
 			numStack.pop(); 
 			float num1 = numStack.top();
 			numStack.pop(); 
-			float result = assembleval(num1, num2, int(opertor.front()));
+			float result = assembleval(num1, num2, opertor.front());
 		        numStack.push(result); 	
 		}
 	       	else
