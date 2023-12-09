@@ -1,3 +1,17 @@
+; rpn.asm
+; Version 3 
+; Alexander E. Johnson
+; Started: 2023-12-02
+; Updated: 2023-12-09
+
+; For CS 301 Fall 2023
+; Contains assembly implementation for function 
+; assembleval, for rpncalc_2.cpp
+
+
+
+; assembleval
+; see header rpncalc_2.hpp for info
 global assembleval
 assembleval:
 
