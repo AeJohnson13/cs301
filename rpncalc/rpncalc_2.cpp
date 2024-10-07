@@ -21,7 +21,7 @@ using std::istringstream;
 #include <iomanip>
 using std::setprecision;
 #include "rpncalc_2.hpp"
-
+#include <chrono>
 
 
 
@@ -47,7 +47,12 @@ int main()
 			float result = 0; // declare float outside of try block
 			try 
 			{
+				auto t1 = std::chrono::high_resolution_clock::now();
 				result = rpnAssess(line); // evaluates the inputed line
+				auto t2 = std::chrono::high_resolution_clock::now();
+				std::chrono::duration<double, std::milli> ms_double = t2 - t1;
+				std::cout << ms_double.count() << "ms" << endl;
+ 
 			}
 			catch(const std::invalid_argument& e) // tells user if the expression wasn't evaluatable or has an invalid character
 			{ 
@@ -60,7 +65,7 @@ int main()
 					cout << "\"" << line << "\"" << endl << " is out of range " <<endl << prompt << endl;
 			} 
 			if(broke == false) // outputs the result if no errors were thrown 
-			{ 
+			{
 				cout << setprecision(6) << "result = " << result << endl << prompt << endl;
 
 			} 

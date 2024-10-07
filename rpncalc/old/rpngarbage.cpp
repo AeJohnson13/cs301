@@ -16,7 +16,7 @@ using std::string;
 #include <list> 
 using std::list; 
 #include "rpngarbage.hpp"
-
+#include <chrono> 
 int main()
 {
 	std::cout << "Please enter an operation using reverse polish notation" << std::endl; 
@@ -29,7 +29,12 @@ int main()
 		inputstream.push_back(token); 
 	
 	}
-	cout << rpnAssess(inputstream) << endl;
+	auto t1 = std::chrono::high_resolution_clock::now();
+	float output =  rpnAssess(inputstream);
+	auto t2 = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double, std::milli> ms_double = t2 -t1;
+	std::cout << ms_double.count() << "ms" << endl;
+	cout << output << endl;
 	
 	return 0; 
 } 	
