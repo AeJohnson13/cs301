@@ -9,3 +9,7 @@
 
 * The majority of the work is done by the function RPN assess, which when given a string that contains a valid RPN notation equation will return the resulting number.
 ![RPN Calc](https://github.com/user-attachments/assets/5a7e4246-3623-4762-ba31-8515d9d9a011)
+
+<p align="center">
+  <a href="https://git.io/typing-svg"><img src="https://github.com/user-attachments/assets/5a7e4246-3623-4762-ba31-8515d9d9a011"/></a>
+</p>
