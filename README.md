@@ -18,7 +18,7 @@
 
 ## How to Run
 To run RPN calc, follow these steps: 
-``` 
+```shell
 # Open a terminal on an X86 machine
 
 # Ensure Git is installed
