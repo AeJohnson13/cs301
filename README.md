@@ -18,7 +18,7 @@
 
 ## How to Run
 To run RPN calc, follow these steps: 
-`` 
+``` 
 # Open a terminal on an X86 machine
 
 # Ensure Git is installed
@@ -32,4 +32,4 @@ cd rpncalc
 
 # compile and run using the included Makefile\
 Make run
-``
+```
