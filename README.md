@@ -15,3 +15,13 @@
 * The step "is element a number" takes place within `evalstring` which uses `std::stof()` to see if the given string can possibly be represented as a float.
 * If `std::stof()` does throw an exception then that is fine, because it takes place within a try block and so a catch block will see if the string is one of the four basic arithmetic operators.
 * Within the step "Pop two elements and apply given operator" the application of the two operators takes place within an X86 assembly file. The file uses the integer representation of the operator character in order to find which arithmetic operation to use within a table of functions. 
+
+## How to Run
+To run RPN calc, follow these steps: 
+`` 
+# Open a terminal on an X86 machine
+
+# Ensure Git is installed
+# Visit https://git-scm.com to download and install console Git if not already installed
+
+# Clone the repository 
