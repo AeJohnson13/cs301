@@ -25,3 +25,11 @@ To run RPN calc, follow these steps:
 # Visit https://git-scm.com to download and install console Git if not already installed
 
 # Clone the repository 
+git clone https://github.com/AeJohnson13/cs301.git
+
+# GO to the rpncalc directory
+cd rpncalc
+
+# compile and run using the included Makefile\
+Make run
+``
