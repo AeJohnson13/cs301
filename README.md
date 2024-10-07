@@ -8,6 +8,10 @@
 
 ![RPN Calc](https://github.com/user-attachments/assets/9888b84c-9dc7-4c9d-b6ba-670d3af7c4f6)
 
-* The majority of the work is done by the function RPN assess, which when given a string that contains a valid RPN notation equation will return the resulting number.
+* The majority of the work is done by the function RPN assess, which when given a string that contains a valid RPN notation equation will return the resulting number. The details of which are displayed in the diagram below. 
 
 ![RPN Assess](https://github.com/user-attachments/assets/274f4db0-29b4-4dce-b064-4c96f7f05295)
+
+* The step "is element a number" takes place within `evalstring` which uses `std::stof()` to see if the given string can possibly be represented as a float.
+* If `std::stof()` does throw an exception then that is fine, because it takes place within a try block and so a catch block will see if the string is one of the four basic arithmetic operators.
+* Within the step "Pop two elements and apply given operator" the application of the two operators takes place within an X86 assembly file. The file uses the integer representation of the operator character in order to find which arithmetic operation to use within a table of functions. 
