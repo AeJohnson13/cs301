@@ -30,6 +30,6 @@ git clone https://github.com/AeJohnson13/cs301.git
 # GO to the rpncalc directory
 cd rpncalc
 
-# compile and run using the included Makefile\
+# compile and run using the included Makefile
 Make run
 ```
